@@ -17,8 +17,5 @@
     "hijriyah"
   ],
   "author": "Agung Novian <pujanggabageur@gmail.com>",
-  "license": "ISC",
-  "dependencies": {
-    "kalender": "^0.3.4"
-  }
+  "license": "ISC"
 }
