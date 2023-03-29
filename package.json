@@ -1,5 +1,5 @@
 {
-  "name": "kalender",
+  "name": "kalender-indonesia",
   "version": "1.0.0",
   "description": "Kalender Indonesia",
   "main": "index.js",
@@ -17,5 +17,8 @@
     "hijriyah"
   ],
   "author": "Agung Novian <pujanggabageur@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "kalender": "^0.3.4"
+  }
 }
