@@ -1,6 +1,6 @@
 {
   "name": "kalender-indonesia",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Kalender Indonesia",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -10,10 +10,6 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags",
     "go": "npx ts-node src/index.ts"
   },
   "repository": {
@@ -39,5 +35,8 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "kalender-indonesia": "^1.0.1"
+  }
 }
