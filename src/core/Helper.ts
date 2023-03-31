@@ -17,7 +17,7 @@ export const intVal = (mixedVar: any, base: number = 10): number => {
   }
 };
 
-export const strPos = (haystack: string, needle: string, offset: number = 0): number | boolean => {
+export const strPos = (haystack: string, needle: string, offset: number = 0): any => {
   let i = (haystack + '').indexOf(needle, offset || 0);
   return i === -1 ? false : i;
 };
@@ -53,7 +53,7 @@ export const mod = (val1: number, val2: number): number => {
   return val1 - val2 * intVal(val1 / val2);
 };
 
-export const ceiling = (val: number, significance: number = 1): number | boolean => {
+export const ceiling = (val: number, significance: number = 1): any => {
   return isNumeric(val) && isNumeric(significance) ? Math.ceil(val / significance) * significance : false;
 };
 
@@ -69,14 +69,17 @@ export const trunc = (value: any): number => {
       const $arrSplit = value.toString().split(',');
       strValue = $arrSplit[0];
     }
+  } else {
+    const $arrSplit = value.toString().split('.');
+    strValue = $arrSplit[0];
   }
   return intVal(strValue);
 };
 
 export const round = (num: number, dec: number): number => {
   const num_sign = num >= 0 ? 1 : -1;
-  return parseFloat((Math.round((num * Math.pow(10, dec)) + (num_sign * 0.0001)) / Math.pow(10, dec)).toFixed(dec));
-}
+  return parseFloat((Math.round(num * Math.pow(10, dec) + num_sign * 0.0001) / Math.pow(10, dec)).toFixed(dec));
+};
 
 export const isDecimal = (val: number): boolean => {
   return isNumeric(val) && Math.floor(val) != val;
@@ -122,11 +125,19 @@ export const leftPad = (value: number, len: number) => {
     output = '0' + output;
   }
   return output;
-}
+};
 
 export const formatReadDate = (year: number, month: number, day: number): string => {
   return [year, ('0' + month).slice(-2), ('0' + day).slice(-2)].join('-');
-}
+};
+
+export const formatReadTime = (date: Date): string => {
+  return [
+    ('0' + date.getHours()).slice(-2),
+    ('0' + date.getMinutes()).slice(-2),
+    ('0' + date.getSeconds()).slice(-2),
+  ].join(':');
+};
 
 export const convertDate = (date: string): string => {
   const arrDate = date.split('-');
@@ -138,14 +149,14 @@ export const convertDate = (date: string): string => {
   let addYear = 0;
   let addMultiply = 0;
 
-  if (dYear >= 2038){
+  if (dYear >= 2038) {
     addMultiply = intVal((dYear - 1982) / 56);
     addYear = addMultiply * 56;
     newYear = dYear - addYear;
   }
 
   return formatReadDate(newYear, dMonth, dDay);
-}
+};
 
 export const daysBetween = (date1: string, date2: string): number => {
   const arrStartDate = date1.split('-');
@@ -158,14 +169,14 @@ export const daysBetween = (date1: string, date2: string): number => {
   const dEndMonth = intVal(arrEndDate[1]);
   let dEndYear = intVal(arrEndDate[0]);
 
-  if (dEndYear >= 2038){
+  if (dEndYear >= 2038) {
     const addMultiplyEnd = intVal((dEndYear - 1982) / 56);
     const addYearEnd = addMultiplyEnd * 56;
-    dEndYear -= (addYearEnd);
+    dEndYear -= addYearEnd;
   }
 
   if (dStartYear == 2037) {
-    if ((dEndYear == 2038) || (dEndYear == 1982)) {
+    if (dEndYear == 2038 || dEndYear == 1982) {
       dStartYear = 1981;
     }
   }
@@ -175,25 +186,47 @@ export const daysBetween = (date1: string, date2: string): number => {
   const sDate1 = convertDate(startDate);
   const sDate2 = convertDate(endDate);
   return Math.floor((Date.parse(sDate2) - Date.parse(sDate1)) / 86400000);
-}
+};
 
 export const dateAdd = (interval: string, value: number, year: number, month: number, day: number): string => {
   switch (interval) {
-    case 'y':   // add year
+    case 'y': // add year
       year += value;
       break;
-    case 'm':    // add month
+    case 'm': // add month
       month += value;
       break;
-    case 'd':    // add days
+    case 'd': // add days
       day += value;
       break;
-    case 'w':    // add week
-      day += (value * 7);
+    case 'w': // add week
+      day += value * 7;
       break;
   }
-  return formatReadDate(year, month, day);
-}
+  const resDate = new Date(year, month - 1, day);
+  return formatReadDate(resDate.getFullYear(), resDate.getMonth() + 1, resDate.getDate());
+};
+
+export const roundTime = (time: string) => {
+  const arrTime = time.split(':');
+  let hour = intVal(arrTime[0]);
+  let minute = intVal(arrTime[1]);
+  let second = intVal(arrTime[2]);
+
+  if (second >= 30) {
+    minute += 1;
+    second = 0;
+  } else {
+    second = 0;
+  }
+
+  if (minute >= 60) {
+    minute = 0;
+    hour += 1;
+  }
+
+  return [('0' + hour).slice(-2), ('0' + minute).slice(-2), ('0' + second).slice(-2)].join(':');
+};
 
 export const roundUpTime = (time: string) => {
   const arrTime = time.split(':');
@@ -203,13 +236,14 @@ export const roundUpTime = (time: string) => {
 
   if (second >= 30) minute += 1;
 
-  if (minute >= 60){
+  if (minute >= 60) {
     minute = 0;
     hour += 1;
   }
 
-  return [
-    ('0' + hour).slice(-2),
-    ('0' + minute).slice(-2)
-  ].join(':');
-}
+  return [('0' + hour).slice(-2), ('0' + minute).slice(-2)].join(':');
+};
+
+export const mktime = (hour: number = 0, minute: number = 0, second: number = 0, month: number = 0, day: number = 0, year: number = 0): any => {
+  return new Date(year, month - 1, day, hour, minute, second, 0);
+};
