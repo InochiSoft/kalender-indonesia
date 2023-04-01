@@ -108,5 +108,5 @@ export const KalenderMasehi = (year: number, month: number, day: number): any =>
   return calendar.KalenderMasehi(year, month, day);
 };
 
-// const kalenderMasehi = calendar.KalenderMasehi(2023);
-// console.log('kalenderMasehi', JSON.stringify(kalenderMasehi));
+const liburMasehi = calendar.KalenderMasehi(2023);
+console.log(JSON.stringify(liburMasehi));
