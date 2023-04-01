@@ -5,8 +5,40 @@ npm i kalender-indonesia
 `
 
 ## Penggunaan
-`
+```
 const kalender = require('kalender-indonesia');
-const hijriyah = kalender.MasehiKeHijriyah('2023-04-01');
-console.log('hijriyah', hijriyah);
-`
+const { CalendarType } = require("kalender-indonesia/lib/opt");
+const options = {
+  timezone: 7,
+  latitude: -6.9128,
+  longitude: 107.6206,
+  altitude: 10,
+  weeklyFormat: true,
+  include: {
+  calendarTypes: [
+    CalendarType.MASEHI,
+    CalendarType.HIJRIYAH,
+  ],
+  addHolidays: [
+    {
+      date: '2023-09-09',
+      name: 'birthday',
+      description: 'Ulang Tahun'
+    }
+  ],
+  addLeaves: [],
+  remHolidays: [
+    {
+      date: '2023-01-01'
+    }
+  ],
+  remLeaves: [],
+  showHoliday: true,
+  showLeave: true,
+  showImsakiyah: false
+  }
+};
+kalender.Options(options);
+const masehi = kalender.KalenderMasehi(2023);
+console.log('masehi', JSON.stringify(masehi));
+```
