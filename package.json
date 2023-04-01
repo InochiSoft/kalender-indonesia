@@ -1,6 +1,6 @@
 {
   "name": "kalender-indonesia",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Kalender Indonesia",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
