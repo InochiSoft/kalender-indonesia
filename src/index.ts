@@ -2,8 +2,10 @@ import {intVal} from './core/Helper';
 import Calendar from "./core/Calendar";
 import {CalendarOptions} from "./opt";
 
-export const options: CalendarOptions = {};
-const calendar = new Calendar(options);
+let calendar = new Calendar();
+export const Options = (opt: CalendarOptions) => {
+  calendar = new Calendar(opt);
+}
 
 export const MasehiKeHijriyah = (date: string): string => {
   const arrDate = date.split('-');
