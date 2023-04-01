@@ -1,7 +1,6 @@
 import {dateAdd, formatReadDate, intVal, mod} from './Helper';
 
 class Hindu {
-  constructor() {}
   public Nyepi(year: number) {
     const cTanggal = 28;
     const cBulan = 3;
@@ -65,7 +64,7 @@ class Hindu {
       newYear = intTahun - addYear;
     }
 
-    let intAM1 = intVal(365.25 * intTahun) + intVal(30.60001 * (intBulan + 1)) + cTanggal - 428;
+    const intAM1 = intVal(365.25 * intTahun) + intVal(30.60001 * (intBulan + 1)) + cTanggal - 428;
     let intKoreksiGr: number;
 
     if (intAM1 < 577748) {
@@ -74,9 +73,9 @@ class Hindu {
       intKoreksiGr = 2 - intVal(intTahun / 100) + intVal(intVal(intTahun / 100) / 4);
     }
 
-    let intH = intVal(365.25 * intTahun) + intVal(30.60001 * (intBulan + 1)) + cTanggal + intKoreksiGr - 428;
+    const intH = intVal(365.25 * intTahun) + intVal(30.60001 * (intBulan + 1)) + cTanggal + intKoreksiGr - 428;
 
-    let intN = mod(intH, 945);
+    const intN = mod(intH, 945);
     let intI: number;
 
     if (intN < 351) {
@@ -96,35 +95,35 @@ class Hindu {
       }
     }
 
-    let datA1 = new Date(newYear, 2, 31);
-    let datA2 = new Date(newYear, 2, 2);
+    const datA1 = new Date(newYear, 2, 31);
+    const datA2 = new Date(newYear, 2, 2);
 
-    let Ma = Ya - intI + 1;
-    let Mb = intI - Yb - 1;
-    let MbMin = Mb + 1;
-    let datMa = dateAdd('d', Ma - 1, newYear, intBulan, cTanggal);
-    let datMb = dateAdd('d', -MbMin, newYear, intBulan, cTanggal);
+    const Ma = Ya - intI + 1;
+    const Mb = intI - Yb - 1;
+    const MbMin = Mb + 1;
+    const datMa = dateAdd('d', Ma - 1, newYear, intBulan, cTanggal);
+    const datMb = dateAdd('d', -MbMin, newYear, intBulan, cTanggal);
 
-    let pdatMa1 = datMa.split('-');
-    let datMa1 = new Date(intVal(pdatMa1[0]), intVal(pdatMa1[1]) - 1, intVal(pdatMa1[2]));
+    const pdatMa1 = datMa.split('-');
+    const datMa1 = new Date(intVal(pdatMa1[0]), intVal(pdatMa1[1]) - 1, intVal(pdatMa1[2]));
 
-    let pdatMb1 = datMb.split('-');
-    let datMb1 = new Date(intVal(pdatMb1[0]), intVal(pdatMb1[1]) - 1, intVal(pdatMb1[2]));
+    const pdatMb1 = datMb.split('-');
+    const datMb1 = new Date(intVal(pdatMb1[0]), intVal(pdatMb1[1]) - 1, intVal(pdatMb1[2]));
 
-    let lngMa = (datMa1.getTime() >= datA1.getTime()) ? 0 : datMa1.getTime();
-    let lngMb = (datMb1.getTime() >= datA2.getTime()) ? datMb1.getTime() : 0;
+    const lngMa = (datMa1.getTime() >= datA1.getTime()) ? 0 : datMa1.getTime();
+    const lngMb = (datMb1.getTime() >= datA2.getTime()) ? datMb1.getTime() : 0;
 
     let intResult = lngMa + lngMb;
     let datResult = new Date(intResult);
 
     let datNyepi = formatReadDate(datResult.getFullYear(), datResult.getMonth() + 1, datResult.getDate());
-    let arrNyepi = datNyepi.split('-');
+    const arrNyepi = datNyepi.split('-');
 
-    if (intVal(arrNyepi[1]) == 1) {
+    if (intVal(arrNyepi[1]) === 1) {
       intResult = datMa1.getTime();
     }
 
-    if (intVal(arrNyepi[1]) == 3) {
+    if (intVal(arrNyepi[1]) === 3) {
       switch (intVal(arrNyepi[2])) {
         case 2:
           intResult = datMa1.getTime();
@@ -136,7 +135,7 @@ class Hindu {
     }
     datResult = new Date(intResult);
     datNyepi = formatReadDate(datResult.getFullYear(), datResult.getMonth() + 1, datResult.getDate());
-    let arrDate = datNyepi.split('-');
+    const arrDate = datNyepi.split('-');
     // saka = iTahun - 78
     return formatReadDate(year, intVal(arrDate[1]), intVal(arrDate[2]));
   }

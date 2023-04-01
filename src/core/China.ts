@@ -1,17 +1,15 @@
 import { dateAdd, formatReadDate, intVal, mktime, mod, trunc } from './Helper';
 
 class China {
-  constructor() {}
-
   public Imlek(year: number) {
     const PI = 3.141592654;
 
-    let intIJST_1 = 1;
-    let intTanggal_1 = 22;
-    let intBulan_1 = 12;
-    let intArrTahun_1 = year - 1;
+    const intIJST1 = 1;
+    const intTanggal1 = 22;
+    const intBulan1 = 12;
+    const intArrTahun1 = year - 1;
 
-    let newYear = intArrTahun_1;
+    let newYear = intArrTahun1;
     let addYear = 0;
     let addMultiply = 0;
 
@@ -21,93 +19,93 @@ class China {
       newYear = year - addYear - 1;
     }
 
-    let datFull_1 = mktime(0, 0, 0, intBulan_1, intTanggal_1, newYear);
+    const datFull1 = mktime(0, 0, 0, intBulan1, intTanggal1, newYear);
 
-    let intTa1_1 = intArrTahun_1 % 4 == 0 ? 1 : 0;
-    let intTa2_1 = intArrTahun_1 % 100 == 0 ? 1 : 0;
-    let intTa3_1 = intTa1_1 + intTa2_1;
+    const intTa11 = intArrTahun1 % 4 === 0 ? 1 : 0;
+    const intTa21 = intArrTahun1 % 100 === 0 ? 1 : 0;
+    const intTa31 = intTa11 + intTa21;
 
-    let dblKB_1 = intTa3_1 > 0 ? 1 : 2;
+    const dblKB1 = intTa31 > 0 ? 1 : 2;
 
-    let dblK1_1 = trunc((275 * intBulan_1) / 9);
-    let dblK2_1 = trunc((intBulan_1 + 9) / 12) * dblKB_1;
-    let dblK3_1 = dblK1_1 - dblK2_1 + intTanggal_1 - 30;
-    let dblK4_1 = dblK3_1 / 365.25 + (intArrTahun_1 - 1900);
-    let dblK5_1 = dblK4_1 * 12.3685;
-    let dblK6_1 = dblK5_1 - trunc(dblK5_1);
-    let dblK7_1 = dblK6_1 > 0.5 ? trunc(dblK5_1 + 1) : trunc(dblK5_1);
+    const dblK11 = trunc((275 * intBulan1) / 9);
+    const dblK21 = trunc((intBulan1 + 9) / 12) * dblKB1;
+    const dblK31 = dblK11 - dblK21 + intTanggal1 - 30;
+    const dblK41 = dblK31 / 365.25 + (intArrTahun1 - 1900);
+    const dblK51 = dblK41 * 12.3685;
+    const dblK61 = dblK51 - trunc(dblK51);
+    const dblK71 = dblK61 > 0.5 ? trunc(dblK51 + 1) : trunc(dblK51);
 
-    let dblKN_1 = intIJST_1 == 1 ? dblK7_1 : dblK7_1 - 0.5;
-    let dblT_1 = dblKN_1 / 1236.85;
+    const dblKN1 = intIJST1 === 1 ? dblK71 : dblK71 - 0.5;
+    const dblT1 = dblKN1 / 1236.85;
 
-    let dblM1_1 = 29.10535608 * dblKN_1;
-    let dblM2_1 = -0.000033 * dblT_1 * dblT_1;
-    let dblM3_1 = -0.00000347 * dblT_1 * dblT_1 * dblT_1;
-    let dblM_1 = mod(359.2242 + dblM1_1 + dblM2_1 + dblM3_1, 360);
+    const dblM11 = 29.10535608 * dblKN1;
+    const dblM21 = -0.000033 * dblT1 * dblT1;
+    const dblM31 = -0.00000347 * dblT1 * dblT1 * dblT1;
+    const dblM1 = mod(359.2242 + dblM11 + dblM21 + dblM31, 360);
 
-    let dblMA1_1 = 385.81691806 * dblKN_1;
-    let dblMA2_1 = 0.0107306 * dblT_1 * dblT_1;
-    let dblMA3_1 = 0.00001236 * dblT_1 * dblT_1 * dblT_1;
-    let dblMA_1 = mod(306.0253 + dblMA1_1 + dblMA2_1 + dblMA3_1, 360);
+    const dblMA11 = 385.81691806 * dblKN1;
+    const dblMA21 = 0.0107306 * dblT1 * dblT1;
+    const dblMA31 = 0.00001236 * dblT1 * dblT1 * dblT1;
+    const dblMA1 = mod(306.0253 + dblMA11 + dblMA21 + dblMA31, 360);
 
-    let dblF1_1 = 390.67050646 * dblKN_1;
-    let dblF2_1 = -0.0016528 * dblT_1 * dblT_1;
-    let dblF3_1 = -0.00000239 * dblT_1 * dblT_1 * dblT_1;
-    let dblF_1 = mod(21.2964 + dblF1_1 + dblF2_1 + dblF3_1, 360);
+    const dblF11 = 390.67050646 * dblKN1;
+    const dblF21 = -0.0016528 * dblT1 * dblT1;
+    const dblF31 = -0.00000239 * dblT1 * dblT1 * dblT1;
+    const dblF1 = mod(21.2964 + dblF11 + dblF21 + dblF31, 360);
 
-    let dblKRA1_1 = 0.1734 - 0.000393 * dblT_1;
-    let dblKRA2_1 = dblKRA1_1 * Math.sin((dblM_1 * PI) / 180);
-    let dblKRA3_1 = -0.4068 * Math.sin((dblMA_1 * PI) / 180);
-    let dblKRA4_1 = 0.0021 * Math.sin((2 * dblM_1 * PI) / 180);
-    let dblKRA5_1 = 0.0161 * Math.sin((2 * dblMA_1 * PI) / 180);
-    let dblKRA6_1 = -0.0004 * Math.sin((3 * dblMA_1 * PI) / 180);
-    let dblKORA_1 = dblKRA2_1 + dblKRA3_1 + dblKRA4_1 + dblKRA5_1 + dblKRA6_1;
+    const dblKRA11 = 0.1734 - 0.000393 * dblT1;
+    const dblKRA21 = dblKRA11 * Math.sin((dblM1 * PI) / 180);
+    const dblKRA31 = -0.4068 * Math.sin((dblMA1 * PI) / 180);
+    const dblKRA41 = 0.0021 * Math.sin((2 * dblM1 * PI) / 180);
+    const dblKRA51 = 0.0161 * Math.sin((2 * dblMA1 * PI) / 180);
+    const dblKRA61 = -0.0004 * Math.sin((3 * dblMA1 * PI) / 180);
+    const dblKORA1 = dblKRA21 + dblKRA31 + dblKRA41 + dblKRA51 + dblKRA61;
 
-    let dblKRB1_1 = -0.0051 * Math.sin(((dblM_1 + dblMA_1) * PI) / 180);
-    let dblKRB2_1 = -0.0074 * Math.sin(((dblM_1 - dblMA_1) * PI) / 180);
-    let dblKRB3_1 = 0.0004 * Math.sin(((2 * dblF_1 + dblM_1) * PI) / 180);
-    let dblKRB4_1 = -0.0004 * Math.sin(((2 * dblF_1 - dblM_1) * PI) / 180);
-    let dblKRB5_1 = 0.0104 * Math.sin((2 * dblF_1 * PI) / 180);
-    let dblKORB_1 = dblKRB1_1 + dblKRB2_1 + dblKRB3_1 + dblKRB4_1 + dblKRB5_1;
+    const dblKRB11 = -0.0051 * Math.sin(((dblM1 + dblMA1) * PI) / 180);
+    const dblKRB21 = -0.0074 * Math.sin(((dblM1 - dblMA1) * PI) / 180);
+    const dblKRB31 = 0.0004 * Math.sin(((2 * dblF1 + dblM1) * PI) / 180);
+    const dblKRB41 = -0.0004 * Math.sin(((2 * dblF1 - dblM1) * PI) / 180);
+    const dblKRB51 = 0.0104 * Math.sin((2 * dblF1 * PI) / 180);
+    const dblKORB1 = dblKRB11 + dblKRB21 + dblKRB31 + dblKRB41 + dblKRB51;
 
-    let dblKC1_1 = -0.0006 * Math.sin(((2 * dblF_1 + dblMA_1) * PI) / 180);
-    let dblKC2_1 = 0.001 * Math.sin(((2 * dblF_1 - dblMA_1) * PI) / 180);
-    let dblKC3_1 = 0.0005 * Math.sin(((dblM_1 + 2 * dblMA_1) * PI) / 180);
-    let dblKORC_1 = dblKC1_1 + dblKC2_1 + dblKC3_1;
+    const dblKC11 = -0.0006 * Math.sin(((2 * dblF1 + dblMA1) * PI) / 180);
+    const dblKC21 = 0.001 * Math.sin(((2 * dblF1 - dblMA1) * PI) / 180);
+    const dblKC31 = 0.0005 * Math.sin(((dblM1 + 2 * dblMA1) * PI) / 180);
+    const dblKORC1 = dblKC11 + dblKC21 + dblKC31;
 
-    let dblKoreksi_1 = dblKORA_1 + dblKORB_1 + dblKORC_1;
+    const dblKoreksi1 = dblKORA1 + dblKORB1 + dblKORC1;
 
-    let dblJdA1_1 = 29.53058868 * dblKN_1;
-    let dblJdA2_1 = 0.0001178 * dblT_1 * dblT_1 * dblT_1;
-    let dblJdA3_1 = -0.000000155 * dblT_1 * dblT_1 * dblT_1;
+    const dblJdA11 = 29.53058868 * dblKN1;
+    const dblJdA21 = 0.0001178 * dblT1 * dblT1 * dblT1;
+    const dblJdA31 = -0.000000155 * dblT1 * dblT1 * dblT1;
 
-    let dblJdB1_1 = 132.87 * dblT_1;
-    let dblJdB2_1 = 0.009173 * dblT_1 * dblT_1;
-    let dblJdB3_1 = 166.56 + dblJdB1_1 - dblJdB2_1;
+    const dblJdB11 = 132.87 * dblT1;
+    const dblJdB21 = 0.009173 * dblT1 * dblT1;
+    const dblJdB31 = 166.56 + dblJdB11 - dblJdB21;
 
-    let dblJdC1_1 = 0.00033 * Math.sin((dblJdB3_1 * PI) / 180);
-    let dblJdC2_1 = dblJdA1_1 + dblJdA2_1 + dblJdA3_1 + dblJdC1_1;
-    let dblJdC3_1 = 2415020.75933 + dblJdC2_1;
-    let dblJD_1 = dblJdC3_1 + 0.5 + dblKoreksi_1;
+    const dblJdC11 = 0.00033 * Math.sin((dblJdB31 * PI) / 180);
+    const dblJdC21 = dblJdA11 + dblJdA21 + dblJdA31 + dblJdC11;
+    const dblJdC31 = 2415020.75933 + dblJdC21;
+    const dblJD1 = dblJdC31 + 0.5 + dblKoreksi1;
 
-    let dblZJd_1 = trunc(dblJD_1);
-    let dblEFJd_1 = dblJD_1 - dblZJd_1;
-    let dblAPJd_1 = trunc((dblZJd_1 - 1867216.25) / 36524.25);
-    let dblAJd_1 = dblZJd_1 < 2299161 ? dblZJd_1 : dblZJd_1 + 1 + dblAPJd_1 - trunc(dblAPJd_1 / 4);
-    let dblBJd_1 = dblAJd_1 + 1524;
-    let dblCJd_1 = trunc((dblBJd_1 - 122.1) / 365.25);
-    let dblDJd_1 = trunc(365.25 * dblCJd_1);
-    let dblEJd_1 = trunc((dblBJd_1 - dblDJd_1) / 30.6001);
+    const dblZJd1 = trunc(dblJD1);
+    const dblEFJd1 = dblJD1 - dblZJd1;
+    const dblAPJd1 = trunc((dblZJd1 - 1867216.25) / 36524.25);
+    const dblAJd1 = dblZJd1 < 2299161 ? dblZJd1 : dblZJd1 + 1 + dblAPJd1 - trunc(dblAPJd1 / 4);
+    const dblBJd1 = dblAJd1 + 1524;
+    const dblCJd1 = trunc((dblBJd1 - 122.1) / 365.25);
+    const dblDJd1 = trunc(365.25 * dblCJd1);
+    const dblEJd1 = trunc((dblBJd1 - dblDJd1) / 30.6001);
 
-    let dblTgl1_1 = dblBJd_1 - dblDJd_1 - trunc(30.6001 * dblEJd_1) + dblEFJd_1;
-    let dblTgl2_1 = trunc(dblTgl1_1);
-    let dblTgl3_1 = dblTgl1_1 - dblTgl2_1;
-    let dblTgl4_1 = dblTgl3_1 * 24;
-    let dblTgl5_1 = dblTgl4_1 + 7;
-    let dblTglM_1 = dblTgl5_1 <= 24 ? dblTgl2_1 : dblTgl2_1 + 1;
+    const dblTgl11 = dblBJd1 - dblDJd1 - trunc(30.6001 * dblEJd1) + dblEFJd1;
+    const dblTgl21 = trunc(dblTgl11);
+    const dblTgl31 = dblTgl11 - dblTgl21;
+    const dblTgl41 = dblTgl31 * 24;
+    const dblTgl51 = dblTgl41 + 7;
+    const dblTglM1 = dblTgl51 <= 24 ? dblTgl21 : dblTgl21 + 1;
 
-    let dblHasilBulan_1 = dblEJd_1 < 13.5 ? dblEJd_1 - 1 : dblEJd_1 - 13;
-    let intTahun1 = dblHasilBulan_1 < 2.5 ? trunc(dblCJd_1 - 4715) : trunc(dblCJd_1 - 4716);
+    const dblHasilBulan1 = dblEJd1 < 13.5 ? dblEJd1 - 1 : dblEJd1 - 13;
+    const intTahun1 = dblHasilBulan1 < 2.5 ? trunc(dblCJd1 - 4715) : trunc(dblCJd1 - 4716);
     let newYear1 = intTahun1;
     let addYear1 = 0;
     let addMultiply1 = 0;
@@ -118,105 +116,105 @@ class China {
       newYear1 = intTahun1 - addYear1;
     }
 
-    let datHasil_1 = mktime(0, 0, 0, dblHasilBulan_1, dblTglM_1, newYear1);
+    const datHasil1 = mktime(0, 0, 0, dblHasilBulan1, dblTglM1, newYear1);
 
-    let temp1 = dateAdd('d', 29, newYear1, dblHasilBulan_1, dblTglM_1);
-    let temp2 = dateAdd('d', 29 * 2, newYear1, dblHasilBulan_1, dblTglM_1);
+    const temp1 = dateAdd('d', 29, newYear1, dblHasilBulan1, dblTglM1);
+    const temp2 = dateAdd('d', 29 * 2, newYear1, dblHasilBulan1, dblTglM1);
 
-    let datFull_2 = datHasil_1 > datFull_1 ? temp1 : temp2;
+    const datFull2 = datHasil1 > datFull1 ? temp1 : temp2;
 
-    let EdatFull = datFull_2.split('-');
+    const EdatFull = datFull2.split('-');
 
-    let intIJST_2 = 1;
-    let intTanggal_2 = intVal(EdatFull[2]);
-    let intBulan_2 = intVal(EdatFull[1]);
-    let intArrTahun_2 = intVal(EdatFull[0]) + addYear1;
+    const intIJST2 = 1;
+    const intTanggal2 = intVal(EdatFull[2]);
+    const intBulan2 = intVal(EdatFull[1]);
+    const intArrTahun2 = intVal(EdatFull[0]) + addYear1;
 
-    let intTa1_2 = intArrTahun_2 % 4 == 0 ? 1 : 0;
-    let intTa2_2 = intArrTahun_2 % 100 == 0 ? 1 : 0;
-    let intTa3_2 = intTa1_2 + intTa2_2;
+    const intTa12 = intArrTahun2 % 4 === 0 ? 1 : 0;
+    const intTa22 = intArrTahun2 % 100 === 0 ? 1 : 0;
+    const intTa32 = intTa12 + intTa22;
 
-    let dblKB_2 = intTa3_2 > 0 ? 1 : 2;
+    const dblKB2 = intTa32 > 0 ? 1 : 2;
 
-    let dblK1_2 = trunc((275 * intBulan_2) / 9);
-    let dblK2_2 = trunc((intBulan_2 + 9) / 12) * dblKB_2;
-    let dblK3_2 = dblK1_2 - dblK2_2 + intTanggal_2 - 30;
-    let dblK4_2 = dblK3_2 / 365.25 + (intArrTahun_2 - 1900);
-    let dblK5_2 = dblK4_2 * 12.3685;
-    let dblK6_2 = dblK5_2 - trunc(dblK5_2);
-    let dblK7_2 = dblK6_2 > 0.5 ? trunc(dblK5_2 + 1) : trunc(dblK5_2);
+    const dblK12 = trunc((275 * intBulan2) / 9);
+    const dblK22 = trunc((intBulan2 + 9) / 12) * dblKB2;
+    const dblK32 = dblK12 - dblK22 + intTanggal2 - 30;
+    const dblK42 = dblK32 / 365.25 + (intArrTahun2 - 1900);
+    const dblK52 = dblK42 * 12.3685;
+    const dblK62 = dblK52 - trunc(dblK52);
+    const dblK72 = dblK62 > 0.5 ? trunc(dblK52 + 1) : trunc(dblK52);
 
-    let dblKN_2 = intIJST_2 == 1 ? dblK7_2 : dblK7_2 - 0.5;
-    let dblT_2 = dblKN_2 / 1236.85;
+    const dblKN2 = intIJST2 === 1 ? dblK72 : dblK72 - 0.5;
+    const dblT2 = dblKN2 / 1236.85;
 
-    let dblM1_2 = 29.10535608 * dblKN_2;
-    let dblM2_2 = -0.000033 * dblT_2 * dblT_2;
-    let dblM3_2 = -0.00000347 * dblT_2 * dblT_2 * dblT_2;
-    let dblM_2 = mod(359.2242 + dblM1_2 + dblM2_2 + dblM3_2, 360);
+    const dblM12 = 29.10535608 * dblKN2;
+    const dblM22 = -0.000033 * dblT2 * dblT2;
+    const dblM32 = -0.00000347 * dblT2 * dblT2 * dblT2;
+    const dblM2 = mod(359.2242 + dblM12 + dblM22 + dblM32, 360);
 
-    let dblMA1_2 = 385.81691806 * dblKN_2;
-    let dblMA2_2 = 0.0107306 * dblT_2 * dblT_2;
-    let dblMA3_2 = 0.00001236 * dblT_2 * dblT_2 * dblT_2;
-    let dblMA_2 = mod(306.0253 + dblMA1_2 + dblMA2_2 + dblMA3_2, 360);
+    const dblMA12 = 385.81691806 * dblKN2;
+    const dblMA22 = 0.0107306 * dblT2 * dblT2;
+    const dblMA32 = 0.00001236 * dblT2 * dblT2 * dblT2;
+    const dblMA2 = mod(306.0253 + dblMA12 + dblMA22 + dblMA32, 360);
 
-    let dblF1_2 = 390.67050646 * dblKN_2;
-    let dblF2_2 = -0.0016528 * dblT_2 * dblT_2;
-    let dblF3_2 = -0.00000239 * dblT_2 * dblT_2 * dblT_2;
-    let dblF_2 = mod(21.2964 + dblF1_2 + dblF2_2 + dblF3_2, 360);
+    const dblF12 = 390.67050646 * dblKN2;
+    const dblF22 = -0.0016528 * dblT2 * dblT2;
+    const dblF32 = -0.00000239 * dblT2 * dblT2 * dblT2;
+    const dblF2 = mod(21.2964 + dblF12 + dblF22 + dblF32, 360);
 
-    let dblKRA1_2 = 0.1734 - 0.000393 * dblT_2;
-    let dblKRA2_2 = dblKRA1_2 * Math.sin((dblM_2 * PI) / 180);
-    let dblKRA3_2 = -0.4068 * Math.sin((dblMA_2 * PI) / 180);
-    let dblKRA4_2 = 0.0021 * Math.sin((2 * dblM_2 * PI) / 180);
-    let dblKRA5_2 = 0.0161 * Math.sin((2 * dblMA_2 * PI) / 180);
-    let dblKRA6_2 = -0.0004 * Math.sin((3 * dblMA_2 * PI) / 180);
-    let dblKORA_2 = dblKRA2_2 + dblKRA3_2 + dblKRA4_2 + dblKRA5_2 + dblKRA6_2;
+    const dblKRA12 = 0.1734 - 0.000393 * dblT2;
+    const dblKRA22 = dblKRA12 * Math.sin((dblM2 * PI) / 180);
+    const dblKRA32 = -0.4068 * Math.sin((dblMA2 * PI) / 180);
+    const dblKRA42 = 0.0021 * Math.sin((2 * dblM2 * PI) / 180);
+    const dblKRA52 = 0.0161 * Math.sin((2 * dblMA2 * PI) / 180);
+    const dblKRA62 = -0.0004 * Math.sin((3 * dblMA2 * PI) / 180);
+    const dblKORA2 = dblKRA22 + dblKRA32 + dblKRA42 + dblKRA52 + dblKRA62;
 
-    let dblKRB1_2 = -0.0051 * Math.sin(((dblM_2 + dblMA_2) * PI) / 180);
-    let dblKRB2_2 = -0.0074 * Math.sin(((dblM_2 - dblMA_2) * PI) / 180);
-    let dblKRB3_2 = 0.0004 * Math.sin(((2 * dblF_2 + dblM_2) * PI) / 180);
-    let dblKRB4_2 = -0.0004 * Math.sin(((2 * dblF_2 - dblM_2) * PI) / 180);
-    let dblKRB5_2 = 0.0104 * Math.sin((2 * dblF_2 * PI) / 180);
-    let dblKORB_2 = dblKRB1_2 + dblKRB2_2 + dblKRB3_2 + dblKRB4_2 + dblKRB5_2;
+    const dblKRB12 = -0.0051 * Math.sin(((dblM2 + dblMA2) * PI) / 180);
+    const dblKRB22 = -0.0074 * Math.sin(((dblM2 - dblMA2) * PI) / 180);
+    const dblKRB32 = 0.0004 * Math.sin(((2 * dblF2 + dblM2) * PI) / 180);
+    const dblKRB42 = -0.0004 * Math.sin(((2 * dblF2 - dblM2) * PI) / 180);
+    const dblKRB52 = 0.0104 * Math.sin((2 * dblF2 * PI) / 180);
+    const dblKORB2 = dblKRB12 + dblKRB22 + dblKRB32 + dblKRB42 + dblKRB52;
 
-    let dblKC1_2 = -0.0006 * Math.sin(((2 * dblF_2 + dblMA_2) * PI) / 180);
-    let dblKC2_2 = 0.001 * Math.sin(((2 * dblF_2 - dblMA_2) * PI) / 180);
-    let dblKC3_2 = 0.0005 * Math.sin(((dblM_2 + 2 * dblMA_2) * PI) / 180);
-    let dblKORC_2 = dblKC1_2 + dblKC2_2 + dblKC3_2;
+    const dblKC12 = -0.0006 * Math.sin(((2 * dblF2 + dblMA2) * PI) / 180);
+    const dblKC22 = 0.001 * Math.sin(((2 * dblF2 - dblMA2) * PI) / 180);
+    const dblKC32 = 0.0005 * Math.sin(((dblM2 + 2 * dblMA2) * PI) / 180);
+    const dblKORC2 = dblKC12 + dblKC22 + dblKC32;
 
-    let dblKoreksi_2 = dblKORA_2 + dblKORB_2 + dblKORC_2;
+    const dblKoreksi2 = dblKORA2 + dblKORB2 + dblKORC2;
 
-    let dblJdA1_2 = 29.53058868 * dblKN_2;
-    let dblJdA2_2 = 0.0001178 * dblT_2 * dblT_2 * dblT_2;
-    let dblJdA3_2 = -0.000000155 * dblT_2 * dblT_2 * dblT_2;
+    const dblJdA12 = 29.53058868 * dblKN2;
+    const dblJdA22 = 0.0001178 * dblT2 * dblT2 * dblT2;
+    const dblJdA32 = -0.000000155 * dblT2 * dblT2 * dblT2;
 
-    let dblJdB1_2 = 132.87 * dblT_2;
-    let dblJdB2_2 = 0.009173 * dblT_2 * dblT_2;
-    let dblJdB3_2 = 166.56 + dblJdB1_2 - dblJdB2_2;
+    const dblJdB12 = 132.87 * dblT2;
+    const dblJdB22 = 0.009173 * dblT2 * dblT2;
+    const dblJdB32 = 166.56 + dblJdB12 - dblJdB22;
 
-    let dblJdC1_2 = 0.00033 * Math.sin((dblJdB3_2 * PI) / 180);
-    let dblJdC2_2 = dblJdA1_2 + dblJdA2_2 + dblJdA3_2 + dblJdC1_2;
-    let dblJdC3_2 = 2415020.75933 + dblJdC2_2;
-    let dblJD_2 = dblJdC3_2 + 0.5 + dblKoreksi_2;
+    const dblJdC12 = 0.00033 * Math.sin((dblJdB32 * PI) / 180);
+    const dblJdC22 = dblJdA12 + dblJdA22 + dblJdA32 + dblJdC12;
+    const dblJdC32 = 2415020.75933 + dblJdC22;
+    const dblJD2 = dblJdC32 + 0.5 + dblKoreksi2;
 
-    let dblZJd_2 = trunc(dblJD_2);
-    let dblEFJd_2 = dblJD_2 - dblZJd_2;
-    let dblAPJd_2 = trunc((dblZJd_2 - 1867216.25) / 36524.25);
-    let dblAJd_2 = dblZJd_2 < 2299161 ? dblZJd_2 : dblZJd_2 + 1 + dblAPJd_2 - trunc(dblAPJd_2 / 4);
-    let dblBJd_2 = dblAJd_2 + 1524;
-    let dblCJd_2 = trunc((dblBJd_2 - 122.1) / 365.25);
-    let dblDJd_2 = trunc(365.25 * dblCJd_2);
-    let dblEJd_2 = trunc((dblBJd_2 - dblDJd_2) / 30.6001);
+    const dblZJd2 = trunc(dblJD2);
+    const dblEFJd2 = dblJD2 - dblZJd2;
+    const dblAPJd2 = trunc((dblZJd2 - 1867216.25) / 36524.25);
+    const dblAJd2 = dblZJd2 < 2299161 ? dblZJd2 : dblZJd2 + 1 + dblAPJd2 - trunc(dblAPJd2 / 4);
+    const dblBJd2 = dblAJd2 + 1524;
+    const dblCJd2 = trunc((dblBJd2 - 122.1) / 365.25);
+    const dblDJd2 = trunc(365.25 * dblCJd2);
+    const dblEJd2 = trunc((dblBJd2 - dblDJd2) / 30.6001);
 
-    let dblTgl1_2 = dblBJd_2 - dblDJd_2 - trunc(30.6001 * dblEJd_2) + dblEFJd_2;
-    let dblTgl2_2 = trunc(dblTgl1_2);
-    let dblTgl3_2 = dblTgl1_2 - dblTgl2_2;
-    let dblTgl4_2 = dblTgl3_2 * 24;
-    let dblTgl5_2 = dblTgl4_2 + 7;
-    let dblTglM_2 = dblTgl5_2 <= 24 ? dblTgl2_2 : dblTgl2_2 + 1;
-    let dblHasilBulan_2 = dblEJd_2 < 13.5 ? dblEJd_2 - 1 : dblEJd_2 - 13;
+    const dblTgl12 = dblBJd2 - dblDJd2 - trunc(30.6001 * dblEJd2) + dblEFJd2;
+    const dblTgl22 = trunc(dblTgl12);
+    const dblTgl32 = dblTgl12 - dblTgl22;
+    const dblTgl42 = dblTgl32 * 24;
+    const dblTgl52 = dblTgl42 + 7;
+    const dblTglM2 = dblTgl52 <= 24 ? dblTgl22 : dblTgl22 + 1;
+    const dblHasilBulan2 = dblEJd2 < 13.5 ? dblEJd2 - 1 : dblEJd2 - 13;
 
-    let intTahun2 = dblHasilBulan_2 < 2.5 ? trunc(dblCJd_2 - 4715) : trunc(dblCJd_2 - 4716);
+    const intTahun2 = dblHasilBulan2 < 2.5 ? trunc(dblCJd2 - 4715) : trunc(dblCJd2 - 4716);
     let newYear2 = intTahun2;
     let addYear2 = 0;
     let addMultiply2 = 0;
@@ -227,7 +225,7 @@ class China {
       newYear2 = intTahun2 - addYear2;
     }
 
-    return formatReadDate(newYear2, dblHasilBulan_2, dblTglM_2);
+    return formatReadDate(newYear2, dblHasilBulan2, dblTglM2);
   }
 
   public Tahun(year: number) {

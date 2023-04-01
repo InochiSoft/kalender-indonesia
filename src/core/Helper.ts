@@ -1,5 +1,6 @@
 export const intVal = (mixedVar: any, base: number = 10): number => {
-  let tmp, match;
+  let tmp;
+  let match;
   const type = typeof mixedVar;
   if (type === 'boolean') {
     return +mixedVar;
@@ -18,7 +19,7 @@ export const intVal = (mixedVar: any, base: number = 10): number => {
 };
 
 export const strPos = (haystack: string, needle: string, offset: number = 0): any => {
-  let i = (haystack + '').indexOf(needle, offset || 0);
+  const i = (haystack + '').indexOf(needle, offset || 0);
   return i === -1 ? false : i;
 };
 
@@ -27,7 +28,7 @@ export const isNumeric = (n: any) => {
 };
 
 export const daysInMonth = (month: number, year: number): number => {
-  return month == 2 ? (year % 4 ? 28 : year % 100 ? 29 : year % 400 ? 28 : 29) : ((month - 1) % 7) % 2 ? 30 : 31;
+  return month === 2 ? (year % 4 ? 28 : year % 100 ? 29 : year % 400 ? 28 : 29) : ((month - 1) % 7) % 2 ? 30 : 31;
 };
 
 export const intPart = (floatNum: number): number => {
@@ -58,7 +59,7 @@ export const ceiling = (val: number, significance: number = 1): any => {
 };
 
 export const trunc = (value: any): number => {
-  if (value == 0) return 0;
+  if (value === 0) return 0;
   let strValue: any;
   let myDec = strPos(value.toString(), '.');
   if (myDec === false) {
@@ -77,12 +78,12 @@ export const trunc = (value: any): number => {
 };
 
 export const round = (num: number, dec: number): number => {
-  const num_sign = num >= 0 ? 1 : -1;
-  return parseFloat((Math.round(num * Math.pow(10, dec) + num_sign * 0.0001) / Math.pow(10, dec)).toFixed(dec));
+  const numSign = num >= 0 ? 1 : -1;
+  return parseFloat((Math.round(num * Math.pow(10, dec) + numSign * 0.0001) / Math.pow(10, dec)).toFixed(dec));
 };
 
 export const isDecimal = (val: number): boolean => {
-  return isNumeric(val) && Math.floor(val) != val;
+  return isNumeric(val) && Math.floor(val) !== val;
 };
 
 export const romance = (num: number): string => {
@@ -175,8 +176,8 @@ export const daysBetween = (date1: string, date2: string): number => {
     dEndYear -= addYearEnd;
   }
 
-  if (dStartYear == 2037) {
-    if (dEndYear == 2038 || dEndYear == 1982) {
+  if (dStartYear === 2037) {
+    if (dEndYear === 2038 || dEndYear === 1982) {
       dStartYear = 1981;
     }
   }
@@ -232,7 +233,7 @@ export const roundUpTime = (time: string) => {
   const arrTime = time.split(':');
   let hour = intVal(arrTime[0]);
   let minute = intVal(arrTime[1]);
-  let second = intVal(arrTime[2]);
+  const second = intVal(arrTime[2]);
 
   if (second >= 30) minute += 1;
 
