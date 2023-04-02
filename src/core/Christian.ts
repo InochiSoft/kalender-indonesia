@@ -47,5 +47,11 @@ class Christian {
   public Natal(year: number) {
     return formatReadDate(year, 12, 25);
   }
+  public NatalBefore(year: number) {
+    return formatReadDate(year, 12, 24);
+  }
+  public NatalAfter(year: number) {
+    return formatReadDate(year, 12, 26);
+  }
 }
 export default Christian;

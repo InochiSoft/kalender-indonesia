@@ -208,7 +208,12 @@ class Buddha {
     const dblTgl52 = dblTgl42 + 7;
     const dblTglM2 = dblTgl52 <= 24 ? dblTgl22 : dblTgl22 + 1;
     const dblHasilBulan2 = dblEJd2 < 13.5 ? dblEJd2 - 1 : dblEJd2 - 13;
-    return formatReadDate(year, dblHasilBulan2, dblTglM2);
+    const waisakDate1 = formatReadDate(year, dblHasilBulan2, dblTglM2);
+    const waisakDate2 = dateAdd('d', 29, year, dblHasilBulan2, dblTglM2);
+    if (year === 2023) {
+      return waisakDate2;
+    }
+    return waisakDate1;
   }
   public Tahun(year: number) {
     return year + 544;

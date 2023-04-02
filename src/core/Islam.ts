@@ -19,51 +19,6 @@ class Islam {
   public CurrentYear: any = {};
   public DateMasehiToHijri: any = {};
 
-  public HijriToMasehi(dYear: number, dMonth: number, dDay: number) {
-    const intAW: number = 227016;
-    const intAH: number =
-        trunc((11 * dYear) / 30) + trunc(354 * dYear) + trunc(30 * dMonth) - trunc((dMonth - 1) / 2) + dDay - 384;
-
-    const intAM: number = intAH + intAW;
-
-    const intTHM1: number = intVal(intAM / 1461) * 4;
-    const intDayCount: number = intAM % 1461;
-    const intAddYear: number = intVal(intDayCount / 365);
-
-    const intTHM2: number = intTHM1 + intAddYear + 1;
-    const intA: number = intDayCount % 365;
-    const intB: number = intAM < 577748 ? 0 : 2 - intVal(intTHM2 / 100) + intVal(intVal(intTHM2 / 100) / 4);
-
-    const intSisa: number = intA - intB;
-    const JH = [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31];
-    JH[2] = intTHM2 % 4 === 0 || intTHM2 % 100 === 0 || intTHM2 % 400 === 0 ? 29 : 28;
-
-    const JLH = [0, 31];
-    let intMatch: number = 1;
-
-    for (let x = 2; x <= 12; x++) {
-      JLH[x] = JLH[x - 1] + JH[x];
-    }
-
-    for (let x = 1; x <= 12; x++) {
-      if (intSisa >= JLH[x - 1] && intSisa <= JLH[x]) {
-        intMatch = x - 1;
-        break;
-      }
-    }
-
-    const intBulan1: number = intSisa < 31 ? 0 : intMatch;
-
-    const intJmlHari: number = JLH[intBulan1];
-    const intSisaHari: number = intSisa - intJmlHari;
-
-    const dMasehi: number = intSisaHari === 0 ? JH[intBulan1] : intSisaHari;
-    let mMasehi: number = intJmlHari === 0 ? intBulan1 : (intBulan1 + 1) % 12 === 0 ? 12 : (intBulan1 + 1) % 12;
-
-    if (mMasehi === 0) mMasehi = 1;
-    return formatReadDate(intVal(intTHM2), intVal(mMasehi), dMasehi);
-  }
-
   private static _masehiToHijriSincTemp(dYear: number, dMonth: number, dDay: number) {
     const intAW = 227016;
     const TA = [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29];
@@ -147,15 +102,15 @@ class Islam {
   }
 
   private static _getHisab(
-      index: number = 0,
-      yMasehi: number = 0,
-      yHijri: number = 0,
-      mLastMonth: number = 0,
-      addMonth: number = 0,
-      latitude: number = -6.9128,
-      longitude: number = 107.6206,
-      timezone: number = 7,
-      altitude: number = 10,
+    index: number = 0,
+    yMasehi: number = 0,
+    yHijri: number = 0,
+    mLastMonth: number = 0,
+    addMonth: number = 0,
+    latitude: number = -6.9128,
+    longitude: number = 107.6206,
+    timezone: number = 7,
+    altitude: number = 10,
   ) {
     const result: HisabResult = {
       index: 0,
@@ -284,34 +239,34 @@ class Islam {
     const ThnM = datFull.getFullYear() + addYear; // C61
 
     JD =
-        trunc(1461 * ((ThnM + 4800 + (BlnM - 14) / 12) / 4)) -
-        trunc((3 / 400) * (ThnM + 4900 + (BlnM - 14) / 12)) +
-        TglM -
-        31709.5;
+      trunc(1461 * ((ThnM + 4800 + (BlnM - 14) / 12) / 4)) -
+      trunc((3 / 400) * (ThnM + 4900 + (BlnM - 14) / 12)) +
+      TglM -
+      31709.5;
 
     T = (JD - 2451545) / 36525;
     const L = 279.69668 + 36000.76892 * T + 0.0003025 * Math.pow(T, 2);
     const G = 358.47583 + 35999.04975 * T - 0.00015 * Math.pow(T, 2) - 0.0000033 * Math.pow(T, 3);
     const R = 0.01675104 - 0.0000418 * T - 0.000000126 * Math.pow(T, 2);
     C =
-        L +
-        (1.91946 - 0.004789 * T - 0.000014 * Math.pow(T, 2)) * Math.sin((G * PI) / 180) +
-        (0.020094 - 0.0001 * T) * Math.sin((2 * G * PI) / 180) +
-        0.000293 * Math.sin((3 * G * PI) / 180);
+      L +
+      (1.91946 - 0.004789 * T - 0.000014 * Math.pow(T, 2)) * Math.sin((G * PI) / 180) +
+      (0.020094 - 0.0001 * T) * Math.sin((2 * G * PI) / 180) +
+      0.000293 * Math.sin((3 * G * PI) / 180);
 
     const mailkulli = 23.452294 - 0.0130125 * T - 0.00000164 * Math.pow(T, 2) + 0.000000503 * Math.pow(T, 3);
     const declinasimthr = (Math.asin(Math.sin((mailkulli * PI) / 180) * Math.sin((C * PI) / 180)) * 180) / PI;
     const tX = Math.tan(((mailkulli / 2) * PI) / 180);
     const X = Math.pow(tX, 2);
     const Tafawwut =
-        ((X * Math.sin((2 * L * PI) / 180) -
-            2 * R * Math.sin((G * PI) / 180) +
-            4 * R * X * Math.sin((G * PI) / 180) * Math.cos((2 * L * PI) / 180) -
-            0.5 * Math.pow(X, 2) * Math.sin((4 * L * PI) / 180) -
-            (5 / 4) * Math.pow(R, 2) * Math.sin((2 * G * PI) / 180)) *
-            180) /
-        PI /
-        15;
+      ((X * Math.sin((2 * L * PI) / 180) -
+        2 * R * Math.sin((G * PI) / 180) +
+        4 * R * X * Math.sin((G * PI) / 180) * Math.cos((2 * L * PI) / 180) -
+        0.5 * Math.pow(X, 2) * Math.sin((4 * L * PI) / 180) -
+        (5 / 4) * Math.pow(R, 2) * Math.sin((2 * G * PI) / 180)) *
+        180) /
+      PI /
+      15;
     const WaktuZawal = 12 - Tafawwut + (timezoneconv - longitude) / 15;
     let N = -Math.tan((latitude * PI) / 180) * Math.tan((declinasimthr * PI) / 180);
     const U = Math.cos((latitude * PI) / 180) * Math.cos((declinasimthr * PI) / 180);
@@ -324,7 +279,7 @@ class Islam {
     const GrbMatahariTqrb = GhurubMthr1;
     const B2 = 2 - intVal(Tahun / 100) + intVal(intVal(Tahun / 100) / 4);
     const JD2 =
-        intVal(365.25 * (Tahun + 4716)) + intVal(30.6001 * (Bulan + 1)) + Tanggal + GrbMatahariTqrb / 24 + B2 - 1524.5;
+      intVal(365.25 * (Tahun + 4716)) + intVal(30.6001 * (Bulan + 1)) + Tanggal + GrbMatahariTqrb / 24 + B2 - 1524.5;
     T2 = (JD2 - 2451545) / 36525;
     const S1 = (280.46645 + 36000.76983 * T2) / 360;
     const S = (S1 - intVal(S1)) * 360;
@@ -338,9 +293,9 @@ class Islam {
     const Kr4 = (0.548 / 3600) * Math.cos((2 * S) / Dr);
     const Qq = 23.43929111 + Kr3 + Kr4 - (46.815 / 3600) * T2;
     E =
-        (6898.06 / 3600) * Math.sin(M / Dr) +
-        (72.095 / 3600) * Math.sin((2 * M) / Dr) +
-        (0.966 / 3600) * Math.sin((3 * M) / Dr);
+      (6898.06 / 3600) * Math.sin(M / Dr) +
+      (72.095 / 3600) * Math.sin((2 * M) / Dr) +
+      (0.966 / 3600) * Math.sin((3 * M) / Dr);
     const Sq = mod(S + E + Kr1 + Kr2 - 20.47 / 3600, 360);
     const MailS = (Math.asin(Math.sin(Sq / Dr) * Math.sin(Qq / Dr)) * 180) / PI;
     const Pta = (Math.atan(Math.tan(Sq / Dr) * Math.cos(Qq / Dr)) * 180) / PI;
@@ -354,12 +309,12 @@ class Islam {
     const Dip = (1.76 / 60) * Math.sqrt(altitude);
     const xh = -(xsd + 34.5 / 60 + Dip);
     const xt =
-        (Math.acos(
-            -Math.tan(latitude / Dr) * Math.tan(MailS / Dr) +
-            Math.sin(xh / Dr) / Math.cos(latitude / Dr) / Math.cos(MailS / Dr),
-            ) *
-            180) /
-        PI;
+      (Math.acos(
+        -Math.tan(latitude / Dr) * Math.tan(MailS / Dr) +
+        Math.sin(xh / Dr) / Math.cos(latitude / Dr) / Math.cos(MailS / Dr),
+        ) *
+        180) /
+      PI;
 
     M1 = (218.31617 + 481267.88088 * T2) / 360;
     const HM = (M1 - intVal(M1)) * 360;
@@ -387,12 +342,12 @@ class Islam {
     const Mo = HM + C + Kr1 + Kr2 - 20.47 / 3600;
     const Aq = A + T2 + T3 + T5;
     const Lq =
-        (18461 / 3600) * Math.sin(F / Dr) +
-        (1010 / 3600) * Math.sin((A + F) / Dr) +
-        (1000 / 3600) * Math.sin((A - F) / Dr) -
-        (624 / 3600) * Math.sin((F - 2 * D) / Dr) -
-        (199 / 3600) * Math.sin((A - F - 2 * D) / Dr) -
-        (167 / 3600) * Math.sin((A + F - 2 * D) / Dr);
+      (18461 / 3600) * Math.sin(F / Dr) +
+      (1010 / 3600) * Math.sin((A + F) / Dr) +
+      (1000 / 3600) * Math.sin((A - F) / Dr) -
+      (624 / 3600) * Math.sin((F - 2 * D) / Dr) -
+      (199 / 3600) * Math.sin((A - F - 2 * D) / Dr) -
+      (167 / 3600) * Math.sin((A + F - 2 * D) / Dr);
     const x = (Math.atan(Math.sin(Mo / Dr) * Math.tan(Qq / Dr)) * 180) / PI;
     const y = Lq + x;
     const nc = (Math.asin((Math.sin(Mo / Dr) * Math.sin(Qq / Dr) * Math.sin(y / Dr)) / Math.sin(x / Dr)) * 180) / PI;
@@ -402,11 +357,11 @@ class Islam {
     const PTc = Ptcb + Ptcc;
     const tc = mod(PT - PTc + xt, 360);
     const hc =
-        (Math.asin(
-            Math.sin(latitude / Dr) * Math.sin(nc / Dr) + Math.cos(latitude / Dr) * Math.cos(nc / Dr) * Math.cos(tc / Dr),
-            ) *
-            180) /
-        PI;
+      (Math.asin(
+        Math.sin(latitude / Dr) * Math.sin(nc / Dr) + Math.cos(latitude / Dr) * Math.cos(nc / Dr) * Math.cos(tc / Dr),
+        ) *
+        180) /
+      PI;
     const xp = (384401 * (1 - Math.pow(0.0549, 2))) / (1 + 0.0549 * Math.cos((Aq + T1) / Dr));
     const HP = 0.9507 / (xp / 384401);
     const sdc = 0.5181 / (xp / 384401) / 2;
@@ -421,7 +376,7 @@ class Islam {
     const arrJumlahBulan = [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     arrJumlahBulan[2] = daysInMonth(BlnM, ThnM);
     const tTanggalAwal =
-        TglM + TambahHari > arrJumlahBulan[BlnM] ? TglM + TambahHari - arrJumlahBulan[BlnM] : TglM + TambahHari;
+      TglM + TambahHari > arrJumlahBulan[BlnM] ? TglM + TambahHari - arrJumlahBulan[BlnM] : TglM + TambahHari;
     const tBulanAwal = TglM + TambahHari > arrJumlahBulan[BlnM] ? mod(BlnM + 1, 12) : mod(BlnM, 12);
     const tTahunAwal = TglM + TambahHari > 31 && BlnM === 12 ? ThnM + 1 : ThnM;
 
@@ -490,6 +445,51 @@ class Islam {
     }
 
     return result;
+  }
+
+  public HijriToMasehi(dYear: number, dMonth: number, dDay: number) {
+    const intAW: number = 227016;
+    const intAH: number =
+      trunc((11 * dYear) / 30) + trunc(354 * dYear) + trunc(30 * dMonth) - trunc((dMonth - 1) / 2) + dDay - 384;
+
+    const intAM: number = intAH + intAW;
+
+    const intTHM1: number = intVal(intAM / 1461) * 4;
+    const intDayCount: number = intAM % 1461;
+    const intAddYear: number = intVal(intDayCount / 365);
+
+    const intTHM2: number = intTHM1 + intAddYear + 1;
+    const intA: number = intDayCount % 365;
+    const intB: number = intAM < 577748 ? 0 : 2 - intVal(intTHM2 / 100) + intVal(intVal(intTHM2 / 100) / 4);
+
+    const intSisa: number = intA - intB;
+    const JH = [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31];
+    JH[2] = intTHM2 % 4 === 0 || intTHM2 % 100 === 0 || intTHM2 % 400 === 0 ? 29 : 28;
+
+    const JLH = [0, 31];
+    let intMatch: number = 1;
+
+    for (let x = 2; x <= 12; x++) {
+      JLH[x] = JLH[x - 1] + JH[x];
+    }
+
+    for (let x = 1; x <= 12; x++) {
+      if (intSisa >= JLH[x - 1] && intSisa <= JLH[x]) {
+        intMatch = x - 1;
+        break;
+      }
+    }
+
+    const intBulan1: number = intSisa < 31 ? 0 : intMatch;
+
+    const intJmlHari: number = JLH[intBulan1];
+    const intSisaHari: number = intSisa - intJmlHari;
+
+    const dMasehi: number = intSisaHari === 0 ? JH[intBulan1] : intSisaHari;
+    let mMasehi: number = intJmlHari === 0 ? intBulan1 : (intBulan1 + 1) % 12 === 0 ? 12 : (intBulan1 + 1) % 12;
+
+    if (mMasehi === 0) mMasehi = 1;
+    return formatReadDate(intVal(intTHM2), intVal(mMasehi), dMasehi);
   }
 
   public Hisab(year: number, latitude: number = -6.9128, longitude: number = 107.6206, timezone: number = 7, altitude: number = 10) {

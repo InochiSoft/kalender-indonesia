@@ -15,27 +15,37 @@ const options = {
   altitude: 10,
   weeklyFormat: true,
   include: {
-  calendarTypes: [
-    CalendarType.MASEHI,
-    CalendarType.HIJRIYAH,
-  ],
-  addHolidays: [
-    {
-      date: '2023-09-09',
-      name: 'birthday',
-      description: 'Ulang Tahun'
-    }
-  ],
-  addLeaves: [],
-  remHolidays: [
-    {
-      date: '2023-01-01'
-    }
-  ],
-  remLeaves: [],
-  showHoliday: true,
-  showLeave: true,
-  showImsakiyah: false
+    calendarTypes: [
+      CalendarType.MASEHI,
+      CalendarType.HIJRIYAH,
+    ],
+    addHolidays: [
+      {
+        date: '2023-09-09',
+        name: 'birthday',
+        description: 'Ulang Tahun'
+      }
+    ],
+    addLeaves: [
+      {
+        date: '2023-09-10',
+        name: 'birthday',
+        description: 'Cuti Ulang Tahun'
+      }
+    ],
+    remHolidays: [
+      {
+        date: '2023-01-01'
+      }
+    ],
+    remLeaves: [
+      {
+        date: '2023-05-05'
+      }
+    ],
+    showHoliday: true,
+    showLeave: true,
+    showImsakiyah: false
   }
 };
 kalender.Options(options);
@@ -43,5 +53,14 @@ const masehi = kalender.KalenderMasehi(2023);
 console.log('masehi', JSON.stringify(masehi));
 ```
 ## Donasi
-[![Donasi](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/novian)
+**PayPal**: [![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/novian)
 
+Crypto:
+
+**ETH (ERC20)/BNB (BEP20)**: 0x12c930700efe92d466fece53eac424410b56f29a
+
+**BTC**: 1NfrjEq4Ac6gTmcnAkEraFrAwoQ6MKQ4B8
+
+Bank:
+
+**BCA**: 8105216927

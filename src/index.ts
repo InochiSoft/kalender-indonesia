@@ -108,5 +108,10 @@ export const KalenderMasehi = (year: number, month: number, day: number): any =>
   return calendar.KalenderMasehi(year, month, day);
 };
 
-const liburMasehi = calendar.KalenderMasehi(2023);
-console.log(JSON.stringify(liburMasehi));
+export const LiburMasehi = (year: number, month: number, day: number): any => {
+  return calendar.LiburMasehi(year, month, day);
+};
+
+export const KalenderHijriyah = (year: number, month: number, day: number): any => {
+  return calendar.KalenderHijriyah(year, month, day);
+};
