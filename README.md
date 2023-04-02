@@ -45,13 +45,19 @@ const options = {
     ],
     showHoliday: true,
     showLeave: true,
-    showImsakiyah: false
+    showImsakiyah: true
   }
 };
 kalender.Options(options);
 const masehi = kalender.KalenderMasehi(2023);
 console.log('masehi', JSON.stringify(masehi));
 ```
+## Situs Web
+[KalenderIndonesia.Com](https://kalenderindonesia.com)
+
+## Pengembang
+[Agung Novian](mailto:pujanggabageur@gmail.com)
+
 ## Donasi
 **PayPal**: [![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/novian)
 

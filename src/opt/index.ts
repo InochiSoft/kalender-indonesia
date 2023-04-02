@@ -56,7 +56,7 @@ export interface HisabResult {
 }
 
 export interface ImsakiyahResult {
-  date: string;
+  date?: string;
   imsak: string;
   shubuh: string;
   syuruq: string;
@@ -84,6 +84,6 @@ export const DefaultCalendarOption: CalendarOptions = {
     remLeaves: [],
     showHoliday: true,
     showLeave: true,
-    showImsakiyah: false
+    showImsakiyah: true
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "kalender-indonesia",
-  "version": "1.0.10",
-  "description": "Kalender Indonesia",
+  "version": "1.0.11",
+  "description": "Kalender Indonesia (https://kalenderindonesia.com)",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

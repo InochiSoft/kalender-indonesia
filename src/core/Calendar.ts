@@ -1,5 +1,5 @@
 import {dateAdd, daysInMonth, formatReadDate, intVal} from './Helper';
-import {CalendarOptions, CalendarType, DefaultCalendarOption, HolidayType, Include} from "../opt";
+import {CalendarOptions, CalendarType, DefaultCalendarOption, HolidayType, ImsakiyahResult, Include} from "../opt";
 import Islam from "./Islam";
 import Buddha from "./Buddha";
 import Hindu from "./Hindu";
@@ -438,6 +438,7 @@ class Calendar {
         resultDate.masehi = masehiDate;
         resultDate.holidays = [];
         resultDate.leaves = [];
+        resultDate.imsakiyah = [];
 
         options.include?.calendarTypes?.forEach((e: CalendarType) => {
           if (e === CalendarType.HIJRIYAH) {
@@ -476,6 +477,17 @@ class Calendar {
               delete aLeave.date;
             }
           }
+        }
+
+        if (options.include?.showImsakiyah) {
+          const arrMasehiDate = masehiDate.split('-');
+          let yearMasehi = intVal(arrMasehiDate[0]);
+          const monthMasehi = intVal(arrMasehiDate[1]);
+          const dayMasehi = intVal(arrMasehiDate[2]);
+          let imsakiyah: ImsakiyahResult = { ashar: '', dhuha: '', dhuhur: '', imsak: '', isya: '', maghrib: '', shubuh: '', syuruq: '' };
+          imsakiyah = this.Imsakiyah(yearMasehi, monthMasehi, dayMasehi);
+          delete imsakiyah.date;
+          resultDate.imsakiyah = imsakiyah;
         }
 
         dates.push(resultDate);
