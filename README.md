@@ -62,7 +62,7 @@ console.log('kalenderMasehi', JSON.stringify(kalenderMasehi));
 const kalenderHijriyah = kalender.KalenderHijriyah(1444);
 console.log('kalenderHijriyah', JSON.stringify(kalenderHijriyah));
 
-const liburMasehi = kalender.LiburMasehi(1444);
+const liburMasehi = kalender.LiburMasehi(2023);
 console.log('liburMasehi', JSON.stringify(liburMasehi));
 
 ```
