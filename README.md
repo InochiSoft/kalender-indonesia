@@ -1,4 +1,11 @@
 # Kalender Indonesia
+
+Kalender Indonesia Masehi, Hijriyah dengan Libur Nasional tahun 1900 sampai 2100.
+
+[![NPM Version][npm-version-image]][npm-url]
+[![NPM Install Size][npm-install-size-image]][npm-install-size-url]
+[![NPM Downloads][npm-downloads-image]][npm-downloads-url]
+
 ## Instalasi/Pemasangan
 `
 npm i kalender-indonesia
@@ -16,8 +23,8 @@ const options = {
   weeklyFormat: true,
   include: {
     calendarTypes: [
-      CalendarType.MASEHI,
-      CalendarType.HIJRIYAH,
+      CalendarType.MASEHI, // atau 0
+      CalendarType.HIJRIYAH, // atau 1
     ],
     addHolidays: [
       {
@@ -49,11 +56,19 @@ const options = {
   }
 };
 kalender.Options(options);
-const masehi = kalender.KalenderMasehi(2023);
-console.log('masehi', JSON.stringify(masehi));
+const kalenderMasehi = kalender.KalenderMasehi(2023);
+console.log('kalenderMasehi', JSON.stringify(kalenderMasehi));
+
+const kalenderHijriyah = kalender.KalenderHijriyah(1444);
+console.log('kalenderHijriyah', JSON.stringify(kalenderHijriyah));
+
+const liburMasehi = kalender.LiburMasehi(1444);
+console.log('liburMasehi', JSON.stringify(liburMasehi));
+
 ```
 ## Situs Web
-[KalenderIndonesia.Com](https://kalenderindonesia.com)
+[![KalenderIndonesia.Com][kalender-indonesia-banner]][kalender-indonesia-url]
+[KalenderIndonesia.Com]([kalender-indonesia-url])
 
 ## Pengembang
 [Agung Novian](mailto:pujanggabageur@gmail.com)
@@ -70,3 +85,14 @@ Crypto:
 Bank:
 
 **BCA**: 8105216927
+
+
+
+[npm-install-size-image]: https://badgen.net/packagephobia/install/kalender-indonesia
+[npm-install-size-url]: https://packagephobia.com/result?p=kalender-indonesia
+[npm-url]: https://npmjs.org/package/kalender-indonesia
+[npm-version-image]: https://badgen.net/npm/v/kalender-indonesia
+[npm-downloads-image]: https://badgen.net/npm/dm/kalender-indonesia
+[npm-downloads-url]: https://npmcharts.com/compare/kalender-indonesia?minimal=true
+[kalender-indonesia-banner]: https://kalenderindonesia.com/image/big-banner/year/month.png
+[kalender-indonesia-url]: https://kalenderindonesia.com
