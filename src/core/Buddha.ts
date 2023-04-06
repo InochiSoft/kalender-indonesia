@@ -1,4 +1,4 @@
-import { dateAdd, formatReadDate, intVal, mod, trunc } from './Helper';
+import {dateAdd, formatReadDate, intVal, mod, trunc} from './Helper';
 
 class Buddha {
   public Waisak(year: number) {
@@ -116,7 +116,12 @@ class Buddha {
     const temp1 = dateAdd('d', 0, newYear1, dblHasilBulan1, dblTglM1);
     const temp2 = dateAdd('d', 29, newYear1, dblHasilBulan1, dblTglM1);
 
-    const datFull2 = datHasil1 > datFull1 ? temp1 : temp2;
+    console.log('temp1', temp1);
+    console.log('temp2', temp2);
+
+    let datFull2 = datHasil1 > datFull1 ? temp1 : temp2;
+    const moon2 = mod(year, 19);
+    if (moon2 == 9) datFull2 = temp2;
 
     const EdatFull = datFull2.split('-');
 
@@ -208,12 +213,8 @@ class Buddha {
     const dblTgl52 = dblTgl42 + 7;
     const dblTglM2 = dblTgl52 <= 24 ? dblTgl22 : dblTgl22 + 1;
     const dblHasilBulan2 = dblEJd2 < 13.5 ? dblEJd2 - 1 : dblEJd2 - 13;
-    const waisakDate1 = formatReadDate(year, dblHasilBulan2, dblTglM2);
-    const waisakDate2 = dateAdd('d', 29, year, dblHasilBulan2, dblTglM2);
-    if (year === 2023) {
-      return waisakDate2;
-    }
-    return waisakDate1;
+
+    return formatReadDate(year, dblHasilBulan2, dblTglM2);
   }
   public Tahun(year: number) {
     return year + 544;
