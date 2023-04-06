@@ -116,9 +116,6 @@ class Buddha {
     const temp1 = dateAdd('d', 0, newYear1, dblHasilBulan1, dblTglM1);
     const temp2 = dateAdd('d', 29, newYear1, dblHasilBulan1, dblTglM1);
 
-    console.log('temp1', temp1);
-    console.log('temp2', temp2);
-
     let datFull2 = datHasil1 > datFull1 ? temp1 : temp2;
     const moon2 = mod(year, 19);
     if (moon2 == 9) datFull2 = temp2;
