@@ -1,6 +1,6 @@
 {
   "name": "kalender-indonesia",
-  "version": "1.0.15",
+  "version": "1.1.0",
   "description": "Kalender Indonesia (https://kalenderindonesia.com)",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,6 +17,7 @@
     "type": "git",
     "url": "https://github.com/InochiSoft/kalender-indonesia.git"
   },
+  "homepage": "https://github.com/InochiSoft/kalender-indonesia#readme",
   "keywords": [
     "kalender",
     "libur",
@@ -24,7 +25,7 @@
     "hijriyah"
   ],
   "author": "Agung Novian <pujanggabageur@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "jest": "^29.5.0",
