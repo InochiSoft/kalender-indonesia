@@ -55,6 +55,7 @@ class Hindu {
     }
 
     let newYear = intTahun;
+    /*
     let addYear = 0;
     let addMultiply = 0;
 
@@ -63,6 +64,7 @@ class Hindu {
       addYear = addMultiply * 56;
       newYear = intTahun - addYear;
     }
+    */
 
     const intAM1 = intVal(365.25 * intTahun) + intVal(30.60001 * (intBulan + 1)) + cTanggal - 428;
     let intKoreksiGr: number;

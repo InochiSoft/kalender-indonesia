@@ -1,4 +1,4 @@
-import { dateAdd, formatReadDate, intVal, mktime, mod, trunc } from './Helper';
+import {dateAdd, formatReadDate, intVal, mktime, mod, trunc} from './Helper';
 
 class China {
   public Imlek(year: number) {
@@ -214,17 +214,16 @@ class China {
     const dblTglM2 = dblTgl52 <= 24 ? dblTgl22 : dblTgl22 + 1;
     const dblHasilBulan2 = dblEJd2 < 13.5 ? dblEJd2 - 1 : dblEJd2 - 13;
 
-    const intTahun2 = dblHasilBulan2 < 2.5 ? trunc(dblCJd2 - 4715) : trunc(dblCJd2 - 4716);
-    let newYear2 = intTahun2;
+    let newYear2 = dblHasilBulan2 < 2.5 ? trunc(dblCJd2 - 4715) : trunc(dblCJd2 - 4716);
+    /*
     let addYear2 = 0;
     let addMultiply2 = 0;
-
     if (intTahun2 >= 2038) {
       addMultiply2 = intVal((intTahun2 - 1982) / 56);
       addYear2 = addMultiply2 * 56;
       newYear2 = intTahun2 - addYear2;
     }
-
+    */
     return formatReadDate(newYear2, dblHasilBulan2, dblTglM2);
   }
 

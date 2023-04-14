@@ -4,11 +4,13 @@ class Buddha {
   public Waisak(year: number) {
     const PI = 3.141592654;
     let newYear = year;
+    /*
     if (year >= 2038) {
       const addMultiply = intVal((year - 1982) / 56);
       const addYear = addMultiply * 56;
       newYear = year - addYear;
     }
+    */
     const intIJST1: number = 0;
     const intTanggal1 = 5;
     const intBulan1 = 5;
@@ -101,16 +103,15 @@ class Buddha {
 
     const dblHasilBulan1 = dblEJd1 < 13.5 ? dblEJd1 - 1 : dblEJd1 - 13;
 
-    const intTahun1 = dblHasilBulan1 < 2.5 ? trunc(dblCJd1 - 4715) : trunc(dblCJd1 - 4716);
-    let newYear1 = intTahun1;
+    let newYear1 = dblHasilBulan1 < 2.5 ? trunc(dblCJd1 - 4715) : trunc(dblCJd1 - 4716);
     let addYear1 = 0;
-
+    /*
     if (intTahun1 >= 2038) {
       const addmultiply1 = intVal((intTahun1 - 1982) / 56);
       addYear1 = addmultiply1 * 56;
       newYear1 = intTahun1 - addYear1;
     }
-
+    */
     const datHasil1 = new Date(newYear1, dblHasilBulan1 - 1, dblTglM1);
 
     const temp1 = dateAdd('d', 0, newYear1, dblHasilBulan1, dblTglM1);

@@ -70,14 +70,14 @@ class Islam {
   private static _masehiToHijriSinc(dYear: number, dMonth: number, dDay: number) {
     let newYear = dYear;
     let addYear = 0;
+    /*
     let addMultiply = 0;
-
     if (dYear >= 2038) {
       addMultiply = intVal((dYear - 1982) / 56);
       addYear = addMultiply * 56;
       newYear = dYear - addMultiply * 56;
     }
-
+    */
     const dDateAfter = dateAdd('d', 1, newYear, dMonth, dDay);
     const arrDateAfter = dDateAfter.split('-');
 
@@ -220,18 +220,16 @@ class Islam {
     let E = intVal((B - D) / 30.6001);
     const TglMUT = intVal(B - D - intVal(30.6001 * E));
     const BlnMUT = E > 13.5 ? E - 13 : E - 1;
-    const ThnMUT = BlnMUT < 2.5 ? C - 4715 : C - 4716;
-
-    let newYear = ThnMUT;
+    let newYear = BlnMUT < 2.5 ? C - 4715 : C - 4716;
     let addYear = 0;
+    /*
     let addMultiply = 0;
-
     if (ThnMUT >= 2038) {
       addMultiply = intVal((ThnMUT - 1982) / 56);
       addYear = addMultiply * 56;
       newYear = ThnMUT - addYear;
     }
-
+    */
     const datFull = new Date(newYear, BlnMUT - 1, TglMUT, WI + timezone, 0, 0, 0);
 
     const TglM = datFull.getDate(); // C59
@@ -528,14 +526,14 @@ class Islam {
 
       let newYear: number = intVal(thisYearMasehi);
       let addYear = 0;
+      /*
       let addMultiply = 0;
-
       if (intVal(thisYearMasehi) >= 2038) {
         addMultiply = (intVal(thisYearMasehi) - 1982) / 56;
         addYear = addMultiply * 56;
         newYear = intVal(thisYearMasehi) - addMultiply * 56;
       }
-
+      */
       for (let x = 0; x < daysCount[i]; x++) {
         const newDateMasehi = dateAdd('d', x, newYear, intVal(thisMonthMasehi), intVal(thisDayMasehi));
         const arrNewDateMasehi = newDateMasehi.split('-');
@@ -576,14 +574,14 @@ class Islam {
       for (let x = 0; x < daysCount[i]; x++) {
         let newYear: number = intVal(thisYearMasehi);
         let addYear = 0;
+        /*
         let addMultiply = 0;
-
         if (intVal(thisYearMasehi) >= 2038) {
           addMultiply = (intVal(thisYearMasehi) - 1982) / 56;
           addYear = addMultiply * 56;
           newYear = intVal(thisYearMasehi) - addMultiply * 56;
         }
-
+        */
         const newDateMasehi = dateAdd('d', x, newYear, intVal(thisMonthMasehi), intVal(thisDayMasehi));
 
         const arrNewDateMasehi = newDateMasehi.split('-');

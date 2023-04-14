@@ -145,8 +145,7 @@ export const convertDate = (date: string): string => {
   const dDay = intVal(arrDate[2]);
   const dMonth = intVal(arrDate[1]);
   const dYear = intVal(arrDate[0]);
-
-  let newYear = dYear;
+  /*
   let addYear = 0;
   let addMultiply = 0;
 
@@ -155,8 +154,8 @@ export const convertDate = (date: string): string => {
     addYear = addMultiply * 56;
     newYear = dYear - addYear;
   }
-
-  return formatReadDate(newYear, dMonth, dDay);
+  */
+  return formatReadDate(dYear, dMonth, dDay);
 };
 
 export const daysBetween = (date1: string, date2: string): number => {
@@ -169,18 +168,18 @@ export const daysBetween = (date1: string, date2: string): number => {
   const dEndDay = intVal(arrEndDate[2]);
   const dEndMonth = intVal(arrEndDate[1]);
   let dEndYear = intVal(arrEndDate[0]);
-
+  /*
   if (dEndYear >= 2038) {
     const addMultiplyEnd = intVal((dEndYear - 1982) / 56);
     const addYearEnd = addMultiplyEnd * 56;
     dEndYear -= addYearEnd;
   }
-
   if (dStartYear === 2037) {
     if (dEndYear === 2038 || dEndYear === 1982) {
       dStartYear = 1981;
     }
   }
+  */
   const startDate = `${dStartYear}-${dStartMonth}-${dStartDay}`;
   const endDate = `${dEndYear}-${dEndMonth}-${dEndDay}`;
 
