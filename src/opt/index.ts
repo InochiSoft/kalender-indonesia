@@ -16,6 +16,7 @@ export interface Holiday {
   date: string;
   name?: string;
   type?: HolidayType;
+  age?: number;
   description?: string;
 }
 

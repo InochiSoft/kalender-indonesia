@@ -312,14 +312,32 @@ class Calendar {
       }
     }
 
+    if (options.include?.addLeaves) {
+      if (options.include?.addLeaves.length > 0) {
+        for (const newLeave of options.include?.addLeaves){
+          if (masehiDate === newLeave.date) {
+            resultDate.leaves.push({
+              date: masehiDate,
+              name: newLeave.name ?? '',
+              year,
+              age: newLeave.age,
+              type: newLeave.type ?? HolidayType.ADDITIONAL,
+              description: newLeave.description ?? '',
+            });
+          }
+        }
+      }
+    }
+
     if (options.include?.remHolidays) {
       if (options.include?.remHolidays.length > 0) {
         if (resultDate.holidays) {
           if (resultDate.holidays.length > 0) {
-            for (const aHoliday of resultDate.holidays) {
+            for (let a = 0; a < resultDate.holidays.length; a++) {
+              const aHoliday = resultDate.holidays[a]
               for (const remHoliday of options.include?.remHolidays){
                 if (aHoliday.date === remHoliday.date) {
-                  delete resultDate.holiday;
+                  delete resultDate.holidays[a];
                 }
               }
             }
@@ -332,10 +350,11 @@ class Calendar {
       if (options.include?.remLeaves.length > 0) {
         if (resultDate.leaves) {
           if (resultDate.leaves.length > 0) {
-            for (const aLeave of resultDate.leaves) {
+            for (let a = 0; a < resultDate.leaves.length; a++) {
+              const aLeave = resultDate.leaves[a]
               for (const remLeave of options.include?.remLeaves){
                 if (aLeave.date === remLeave.date) {
-                  delete resultDate.leave;
+                  delete resultDate.leaves[a];
                 }
               }
             }
@@ -355,7 +374,7 @@ class Calendar {
     if (resultDate.holidays) {
       if (resultDate.holidays.length > 0) {
         for (const aHoliday of resultDate.holidays) {
-          delete aHoliday.date;
+          if (aHoliday) delete aHoliday.date;
         }
       }
     }
@@ -363,7 +382,7 @@ class Calendar {
     if (resultDate.leaves) {
       if (resultDate.leaves.length > 0) {
         for (const aLeave of resultDate.leaves) {
-          delete aLeave.date;
+          if (aLeave) delete aLeave.date;
         }
       }
     }
@@ -466,7 +485,7 @@ class Calendar {
         if (resultDate.holidays) {
           if (resultDate.holidays.length > 0) {
             for (const aHoliday of resultDate.holidays) {
-              delete aHoliday.date;
+              if (aHoliday) delete aHoliday.date;
             }
           }
         }
@@ -474,7 +493,7 @@ class Calendar {
         if (resultDate.leaves) {
           if (resultDate.leaves.length > 0) {
             for (const aLeave of resultDate.leaves) {
-              delete aLeave.date;
+              if (aLeave) delete aLeave.date;
             }
           }
         }
@@ -739,7 +758,7 @@ class Calendar {
         if (resultDate.holidays) {
           if (resultDate.holidays.length > 0) {
             for (const aHoliday of resultDate.holidays) {
-              delete aHoliday.date;
+              if (aHoliday) delete aHoliday.date;
             }
           }
         }
@@ -747,7 +766,7 @@ class Calendar {
         if (resultDate.leaves) {
           if (resultDate.leaves.length > 0) {
             for (const aLeave of resultDate.leaves) {
-              delete aLeave.date;
+              if (aLeave) delete aLeave.date;
             }
           }
         }
