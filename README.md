@@ -78,7 +78,7 @@ console.log('liburMasehi', JSON.stringify(liburMasehi));
 
 Crypto:
 
-**ETH (ERC20)/BNB (BEP20)**: 0x12c930700efe92d466fece53eac424410b56f29a
+**ETH (ERC20)/BNB (BEP20)**: 0x09dbfb9dc7e1415e28990c45f9737b1b34d40404
 
 **BTC**: 1NfrjEq4Ac6gTmcnAkEraFrAwoQ6MKQ4B8
 
